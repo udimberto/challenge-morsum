@@ -5,10 +5,10 @@ const theme = createTheme({
   palette: {
     ...colors,
     primary: {
-      main: colors.red.A400,
+      main: colors.yellow.A400
     },
     secondary: {
-      main: colors.red.A400,
+      main: colors.yellow.A400
     },
   },
 })

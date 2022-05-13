@@ -1,13 +1,11 @@
-import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
-import RecipesList from '../components/Recipe/RecipesList'
+import HomeProductsByCategories from '../components/Home/HomeProductsByCategories'
+import HomeProductsFeatured from '../components/Home/HomeProductsFeatured'
 
 export default function Home() {
   return (
-    <Container>
-      <Box py={[2, 4]}>
-        <RecipesList />
-      </Box>
-    </Container>
+    <>
+      <HomeProductsFeatured />
+      <HomeProductsByCategories />
+    </>
   )
 }

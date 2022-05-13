@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import LayoutAppBar from './LayoutAppBar'
+import LayoutAppBottomBar from './LayoutAppBottomBar'
 import LayoutAppFooter from './LayoutAppFooter'
 import type { ChildrenProp } from '../types'
 
@@ -7,27 +8,30 @@ export type LayoutAppProps = ChildrenProp
 
 export default function LayoutApp({ children } : LayoutAppProps) {
   return (
-    <Box
-      id="layout"
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        flex: 1,
-      }}
-    >
-      <LayoutAppBar />
+    <>
       <Box
-        id="layout-content"
-        component="main"
+        id="layout"
         sx={{
           display: 'flex',
           flexDirection: 'column',
           flex: 1,
         }}
       >
-        {children}
+        <LayoutAppBar />
+        <Box
+          id="layout-content"
+          component="main"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            flex: 1,
+          }}
+        >
+          {children}
+        </Box>
+        <LayoutAppFooter />
+        <LayoutAppBottomBar />
       </Box>
-      <LayoutAppFooter />
-    </Box>
+    </>
   )
 }

@@ -1,18 +1,19 @@
 import logger from 'redux-logger'
-import {
-  Action,
-  configureStore,
-  ThunkAction,
-} from '@reduxjs/toolkit'
+import { Action, combineReducers, configureStore, ThunkAction } from '@reduxjs/toolkit'
+import { getPersistedReducer, persistSerializableCheck } from './persist'
+import { productsReducer as products } from './products'
 
-import { recipesReducer as recipes } from './recipes'
-
-export const store = configureStore({
+export const rootReducer      = combineReducers({ products })
+export const persistedReducer = getPersistedReducer(rootReducer)
+export const store            = configureStore({
+  reducer   : persistedReducer,
   devTools  : (process.env.NODE_ENV !== 'production'),
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
-  reducer   : {
-    recipes,
-  },
+  middleware: (getDefaultMiddleware) => (
+    getDefaultMiddleware({
+      serializableCheck: persistSerializableCheck,
+    })
+    .concat(logger)
+  ),
 })
 
 export type AppDispatch         = typeof store.dispatch

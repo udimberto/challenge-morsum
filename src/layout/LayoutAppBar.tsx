@@ -4,7 +4,6 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Link from '../components/Link/Link'
-import LayoutAppBarSearch from './LayoutAppBarSearch'
 
 export default function LayoutAppBar() {
   return (
@@ -21,14 +20,13 @@ export default function LayoutAppBar() {
             display="flex"
             width="100%"
             flexDirection="row"
+            justifyContent={['center','stretch']}
           >
             <Box
               display="flex"
-              flex="1"
               alignItems="center"
             >
               <Typography
-                variant="h6"
                 noWrap
                 component={Link}
                 href="/"
@@ -38,10 +36,9 @@ export default function LayoutAppBar() {
                   textDecoration: 'none',
                 }}
               >
-                food recipes
+                {process.env.NEXT_PUBLIC_APP_NAME}
               </Typography>
             </Box>
-            <LayoutAppBarSearch />
           </Box>
         </Toolbar>
       </Container>

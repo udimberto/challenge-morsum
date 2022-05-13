@@ -5,7 +5,7 @@ import FormControl from '../components/Form/FormControl'
 import theme from '../styles/theme'
 
 const elKind = 'search'
-const elName = 'recipe'
+const elName = 'product'
 
 export default function LayoutAppBarSearch() {
   /**
