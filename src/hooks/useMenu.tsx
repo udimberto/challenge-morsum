@@ -7,14 +7,8 @@ export function useMenu(): Menu {
    * Menu:
    * Products Categories
    */
-  const {
-    data   : categories,
-    error  : categoriesError,
-    pending: categoriesPending,
-  } = useProductCategories()
-  const categoriesDisabled = !!categoriesPending
-  const categoriesHidden   = !!(categoriesError || (!categories && !categoriesPending))
-  const categoriesMenu     = useMemo(() => (
+  const { data: categories } = useProductCategories()
+  const categoriesMenu       = useMemo(() => (
     categories?.map((category: ProductCategory) => ({
       id      : `category-${category}`,
       href    : `/category/${category}`,
@@ -23,7 +17,7 @@ export function useMenu(): Menu {
   ), [categories])
 
   const menu = useMemo(() => ([
-    ...categoriesMenu,
+    ...(categoriesMenu || []),
   ]), [categoriesMenu])
 
   return menu

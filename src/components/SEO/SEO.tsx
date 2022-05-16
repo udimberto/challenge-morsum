@@ -5,7 +5,7 @@ const appDescription = process.env.NEXT_PUBLIC_SEO_DESCRIPTION
 const imageUrlBase   = process.env.NEXT_APP_URL
 const imageUrl       = `${imageUrlBase}/img/share.png`
 
-export type SearchEngineOptimizationProps = {
+export type SEOProps = {
   title      ?: string
   description?: string
   image      ?: string
@@ -13,14 +13,13 @@ export type SearchEngineOptimizationProps = {
   imageWidth ?: number
 }
 
-export function SearchEngineOptimization({
+export function SEO({
   title,
   description = appDescription,
   image       = imageUrl,
   imageHeight = 1200,
   imageWidth  = 1200,
-} : SearchEngineOptimizationProps) {
-
+} : SEOProps) {
   return (
     <NextHead>
       {/* Title */}
@@ -38,4 +37,4 @@ export function SearchEngineOptimization({
   )
 }
 
-export default SearchEngineOptimization
+export default SEO

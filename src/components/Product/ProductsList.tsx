@@ -1,19 +1,18 @@
+import dayjs from 'dayjs'
 import { useEffect } from 'react'
 import { useProducts, useWindowValues } from '../../hooks'
 import { Swiper, SwiperProps, SwiperSlide, SwiperSlideProps } from 'swiper/react'
-import { A11y, Navigation, Pagination } from 'swiper';
+import { A11y, Navigation, Pagination } from 'swiper'
 import {
   Box,
   BoxProps,
   CircularProgress,
   Container,
   ContainerProps,
-  Skeleton,
 } from '@mui/material'
-import Title, { TitleProps } from '../Title/Title'
+import Title, { TitleProps } from '../Typography/Title'
 import ProductsListItem, { ProductsListItemProps } from './ProductsListItem'
 import { GenericRequestParams, Product } from '../../types'
-import dayjs from 'dayjs';
 
 export type ProductsListProps = {
   id                 ?: string
@@ -103,40 +102,42 @@ export default function ProductsList({
         id={`${elId}-section-container`}
         {...container}
       >
-        <Box
-          display="flex"
-          width="100%"
-          flexDirection="row"
-        >
+        {titleChildren && (
           <Box
             display="flex"
-            flex="1"
+            width="100%"
+            flexDirection="row"
           >
-            <Title
-              id={`${elId}-title`}
-              pt={1}
-              pb={0}
-              mb={[-1, 0]}
-              {...title}
+            <Box
+              display="flex"
+              flex="1"
             >
-              {titleChildren || 'Products'}
-            </Title>
+              <Title
+                id={`${elId}-title`}
+                pt={1}
+                pb={0}
+                mb={[-1, 0]}
+                {...title}
+              >
+                {titleChildren}
+              </Title>
+            </Box>
+            <Box
+              display="flex"
+              alignItems="center"
+            >
+              <CircularProgress
+                color="inherit"
+                size={20}
+                disableShrink={!pending}
+                sx={{
+                  opacity: pending ? 1 : 0,
+                  transition: 'all ease-in-out 0.3s',
+                }}
+              />
+            </Box>
           </Box>
-          <Box
-            display="flex"
-            alignItems="center"
-          >
-            <CircularProgress
-              color="inherit"
-              size={20}
-              disableShrink={!pending}
-              sx={{
-                opacity: pending ? 1 : 0,
-                transition: 'all ease-in-out 0.3s',
-              }}
-            />
-          </Box>
-        </Box>
+        )}
         <Box
           marginX={[-2, -3]}
           paddingX={[2, 3]}

@@ -7,6 +7,7 @@ import CardActionArea from '@mui/material/CardActionArea'
 import type { Product } from '../../types'
 import Link from '../Link/Link'
 import Typography, { TypographyProps } from '../Typography/Typography'
+import { currencyFormat } from '../../utils'
 
 export type ProductsListItemProps = CardProps & {
   id       : string
@@ -57,6 +58,7 @@ export default function ProductsListItem({
   return (
     <Card
       id={id}
+      elevation={2}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -68,8 +70,8 @@ export default function ProductsListItem({
         href={`/${productId || ''}`}
         onClick={handleClick}
         sx={{
-          display: 'flex',
-          flex: 1,
+          display      : 'flex',
+          flex         : 1,
           flexDirection: 'column',
         }}
       >
@@ -78,9 +80,10 @@ export default function ProductsListItem({
           image={productImage}
           height={windowXS ? 90 : 140}
           sx={(theme) => ({
-            padding  : theme.spacing(windowXS ? 1 : 2),
-            objectFit: 'contain',
-            minHeight: windowXS ? 90 : 140,
+            padding        : theme.spacing(windowXS ? 1 : 2),
+            objectFit      : 'contain',
+            minHeight      : windowXS ? 90 : 140,
+            transition     : 'all ease-in-out 0.3s',
             backgroundColor: pending ? theme.palette.grey[100] : 'white',
           })}
         />
@@ -116,17 +119,7 @@ export default function ProductsListItem({
               pt={[0, 1]}
               {...price}
             >
-              {
-                new Intl.NumberFormat(
-                  'en-IN',
-                  {
-                    minimumSignificantDigits: 2,
-                    maximumSignificantDigits: 4,
-                    style                   : 'currency',
-                    currency                : 'USD',
-                  }
-                ).format(productPrice || 0)
-              }
+              {currencyFormat(productPrice)}
             </Typography>
           </Box>
         </CardContent>

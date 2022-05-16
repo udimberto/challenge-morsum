@@ -13,6 +13,7 @@ export default function LayoutAppBottomBar() {
     <AppBar
       position="fixed"
       color="default"
+      elevation={2}
       sx={{
         top: 'auto',
         bottom: 0,

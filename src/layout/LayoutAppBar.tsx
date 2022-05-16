@@ -13,6 +13,7 @@ export default function LayoutAppBar() {
     <AppBar
       position="static"
       color="primary"
+      elevation={2}
       sx={{
         zIndex: 100,
       }}

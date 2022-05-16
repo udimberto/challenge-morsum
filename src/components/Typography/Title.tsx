@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from '../Typography/Typography'
+import { Typography, TypographyProps } from './Typography'
 import { ComponentProp } from '../../types'
 
 export type TitleProps = ComponentProp & Omit<TypographyProps, 'component'> & {}

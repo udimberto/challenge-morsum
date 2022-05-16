@@ -74,7 +74,6 @@ export default function LayoutAppBarMenuItem({
           <Link
             id={menuTriggerId}
             href={String(href || '/')}
-            color="secondary"
             {...link}
           >
             {children}

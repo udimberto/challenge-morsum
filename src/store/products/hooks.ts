@@ -44,7 +44,7 @@ export function useProducts(categorySlug?: ProductCategory) {
   }
 }
 
-export function useProduct(productId?: any) {
+export function useProduct(productId?: string|string[], productDataFromSS?: Product) {
   const dispatch = useAppDispatch()
   const state    = useAppSelector(productSelector)
 
@@ -73,6 +73,17 @@ export function useProduct(productId?: any) {
 
     get(productId)
   }, [get, isSameProduct, productId])
+
+  /**
+   * Automatic Product Setter, triggered by hook param
+   */
+  useEffect(() => {
+    if (!productDataFromSS) return
+
+    dispatch(
+      detailsSelect(productDataFromSS)
+    )
+  }, [dispatch, productDataFromSS])
 
   /**
    * Remove the Product from context on unmount

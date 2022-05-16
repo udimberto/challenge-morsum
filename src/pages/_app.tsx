@@ -3,7 +3,7 @@ import NextHead from 'next/head'
 import { CacheProvider, EmotionCache } from '@emotion/react'
 import LayoutApp from '../layout'
 import GlobalDataTriggers from '../components/GlobalDataTriggers/GlobalDataTriggers'
-import SearchEngineOptimization from '../components/SearchEngineOptimization/SearchEngineOptimization'
+import SearchEngineOptimization from '../components/SEO/SEO'
 import AppStylesProvider, { createEmotionCache, theme } from '../styles'
 import StoreProvider from '../store'
 

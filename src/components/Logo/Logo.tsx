@@ -14,7 +14,6 @@ export default function Logo() {
       marginX={[-2]}
       gap={[1]}
       fontWeight={700}
-      color="secondary"
       sx={{
         textDecoration: 'none',
       }}
