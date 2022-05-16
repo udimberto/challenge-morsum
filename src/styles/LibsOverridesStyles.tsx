@@ -20,7 +20,7 @@ export const LibsOverridesStyles = () => (
        * Swiper
        */
       :root body {
-        --swiper-theme-color         : ${theme.palette.primary.main};
+        --swiper-theme-color         : ${theme.palette.secondary.main};
         --swiper-horizontal-spacing-y: ${swiper.horizontal.spacing}px;
         --swiper-horizontal-spacing-x: ${swiper.horizontal.spacing}px;
         --swiper-navigation-size     : ${swiper.navigation.size}px;

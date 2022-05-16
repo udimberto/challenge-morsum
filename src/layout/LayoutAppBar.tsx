@@ -1,11 +1,14 @@
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
-import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
-import Link from '../components/Link/Link'
+import Logo from '../components/Logo/Logo'
+import LayoutAppBarMenu from './LayoutAppBarMenu'
+import { useWindowValues } from '../hooks'
 
 export default function LayoutAppBar() {
+  const { windowXS } = useWindowValues()
+
   return (
     <AppBar
       position="static"
@@ -20,25 +23,24 @@ export default function LayoutAppBar() {
             display="flex"
             width="100%"
             flexDirection="row"
-            justifyContent={['center','stretch']}
+            alignItems="stretch"
+            justifyContent={['center', 'space-between']}
           >
             <Box
               display="flex"
               alignItems="center"
             >
-              <Typography
-                noWrap
-                component={Link}
-                href="/"
-                sx={{
-                  fontWeight: 700,
-                  color: 'inherit',
-                  textDecoration: 'none',
-                }}
-              >
-                {process.env.NEXT_PUBLIC_APP_NAME}
-              </Typography>
+              <Logo />
             </Box>
+            {!windowXS && (
+              <>
+                <LayoutAppBarMenu
+                  wrapper={{
+                    flex: '1 auto',
+                  }}
+                />
+              </>
+            )}
           </Box>
         </Toolbar>
       </Container>

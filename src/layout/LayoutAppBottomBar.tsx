@@ -1,8 +1,10 @@
 import {
   AppBar,
+  Box,
   Toolbar,
 } from '@mui/material'
 import { useWindowValues } from '../hooks'
+import LayoutAppBarMenu from './LayoutAppBarMenu'
 
 export default function LayoutAppBottomBar() {
   const { windowXS } = useWindowValues()
@@ -10,14 +12,22 @@ export default function LayoutAppBottomBar() {
   return !windowXS ? null : (
     <AppBar
       position="fixed"
-      color="primary"
+      color="default"
       sx={{
         top: 'auto',
         bottom: 0,
       }}
     >
-      <Toolbar>
-        Bottom Bar
+      <Toolbar
+        sx={{
+          alignItems: 'stretch',
+        }}
+      >
+        <LayoutAppBarMenu
+          wrapper={{
+            fontSize: 'small',
+          }}
+        />
       </Toolbar>
     </AppBar>
   )

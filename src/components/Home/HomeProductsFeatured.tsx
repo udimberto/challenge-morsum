@@ -6,9 +6,6 @@ export default function HomeProductsFeatured() {
   const { windowXS }      = useWindowValues()
   const productsListProps = {
     id     : 'products-list-featured',
-    section: {
-      bgcolor: 'whiteSmoke',
-    },
     title  : {
       children  : 'featured',
       fontWeight: 'bold',

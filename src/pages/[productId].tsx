@@ -6,6 +6,7 @@ import {
   Rating,
   Typography,
 } from '@mui/material'
+import Title from '../components/Title/Title'
 
 const elId = 'product-details'
 
@@ -39,16 +40,15 @@ export default function PageProduct() {
     <>
       <Container>
         <Box
-          paddingY={[2, 4]}
+          paddingBottom={[2, 4]}
         >
-          <Typography
+          <Title
             id={`${elId}-title`}
-            component="h1"
-            variant="h4"
-            pb={[2, 4]}
+            fontWeight="bold"
+            pt={[3, 5]}
           >
             {productTitle || `Product ${productId}...`}
-          </Typography>
+          </Title>
           {productDescription}
         </Box>
         <Box>

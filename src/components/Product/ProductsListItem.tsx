@@ -81,6 +81,7 @@ export default function ProductsListItem({
             padding  : theme.spacing(windowXS ? 1 : 2),
             objectFit: 'contain',
             minHeight: windowXS ? 90 : 140,
+            backgroundColor: pending ? theme.palette.grey[100] : 'white',
           })}
         />
         <CardContent

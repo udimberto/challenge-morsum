@@ -5,14 +5,18 @@ export default function PageSearch() {
   /**
    * Navigation values
    */
-  const { query }      = useRouter()
-  const { categoryId } = query
+  const { query }        = useRouter()
+  const { categorySlug } = query
 
   return (
     <>
       <ProductsList
         filtersAreRequired
-        filters={!categoryId ? undefined : { categoryId }}
+        filters={!categorySlug ? undefined : { categorySlug }}
+        title={{
+          children: categorySlug,
+          fontWeight: 'bold',
+        }}
       />
     </>
   )
