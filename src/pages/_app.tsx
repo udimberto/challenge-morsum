@@ -43,6 +43,7 @@ export default function NextJSCustomApp(props: NextJSCustomAppProps) {
               <link key="appleTouchIcon" rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
               <link key="androidTouchIcon" rel="android-touch-icon" href="/icons/apple-touch-icon.png" />
               <link key="maskIcon" rel="mask-icon" href="/icons/apple-mask-icon.svg" color={appBarColor} />
+              <link key="manifest" rel="manifest" href="/manifest.json" />
 
               <meta key="ogType" property="og:type" content="website" />
               <meta key="ogSiteName" property="og:site_name" content={process.env.NEXT_PUBLIC_APP_NAME} />

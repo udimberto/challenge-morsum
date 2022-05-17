@@ -41,5 +41,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [x] SS product-data on `robots` requesting
   - [x] SEO Schema
 - [x] `AppBar` links
-- [ ] Deploy on Vercel
+- [x] Deploy on Vercel
 - [ ] Relevant Unit Tests
