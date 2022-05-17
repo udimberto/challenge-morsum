@@ -36,9 +36,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
   - [x] Featured Products List
   - [x] Products List by Categories
   - [ ] SS categories-data on `robots` requesting
-- [ ] Product Page
-  - [x] layout
-  - [x] SS data on `robots` requesting
+- [x] Product Page
+  - [x] Layout
+  - [x] SS product-data on `robots` requesting
   - [x] SEO Schema
 - [x] `AppBar` links
 - [ ] Deploy on Vercel

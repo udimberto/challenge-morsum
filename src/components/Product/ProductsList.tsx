@@ -57,7 +57,8 @@ export default function ProductsList({
     loadedAt &&
     (dayjs().diff(dayjs(loadedAt), 'seconds') < 15)
   )
-  const list = products || Array.from({ length: limit })
+  const list    = products || Array.from({ length: limit })
+  const isEmpty = !!(!pending && (!products || !products.length))
 
   /**
    * Data-fetch trigger
@@ -96,83 +97,113 @@ export default function ProductsList({
       id={`${elId}-section`}
       component="section"
       py={[2, 4]}
+      display="flex"
+      flex="1"
+      flexDirection="column"
       {...section}
     >
       <Container
         id={`${elId}-section-container`}
         {...container}
+        sx={{
+          display      : 'flex',
+          flex         : '1',
+          flexDirection: 'column',
+        }}
       >
-        {titleChildren && (
-          <Box
-            display="flex"
-            width="100%"
-            flexDirection="row"
-          >
-            <Box
-              display="flex"
-              flex="1"
-            >
-              <Title
-                id={`${elId}-title`}
-                pt={1}
-                pb={0}
-                mb={[-1, 0]}
-                {...title}
+        {!isEmpty ? (
+          <>
+            {titleChildren && (
+              <Box
+                display="flex"
+                width="100%"
+                flexDirection="row"
               >
-                {titleChildren}
-              </Title>
-            </Box>
+                <Box
+                  display="flex"
+                  flex="1"
+                >
+                  <Title
+                    id={`${elId}-title`}
+                    pt={1}
+                    pb={0}
+                    mb={[-1, 0]}
+                    {...title}
+                  >
+                    {titleChildren}
+                  </Title>
+                </Box>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                >
+                  <CircularProgress
+                    color="inherit"
+                    size={20}
+                    disableShrink={!pending}
+                    sx={{
+                      opacity: pending ? 1 : 0,
+                      transition: 'all ease-in-out 0.3s',
+                    }}
+                  />
+                </Box>
+              </Box>
+            )}
             <Box
-              display="flex"
-              alignItems="center"
+              marginX={[-2, -3]}
+              paddingX={[2, 3]}
             >
-              <CircularProgress
-                color="inherit"
-                size={20}
-                disableShrink={!pending}
-                sx={{
-                  opacity: pending ? 1 : 0,
-                  transition: 'all ease-in-out 0.3s',
-                }}
-              />
+              <Swiper
+                id={elId}
+                spaceBetween={18}
+                slidesPerView={slidesPerView}
+                modules={[ A11y, Navigation, Pagination ]}
+                enabled={sliderEnabled}
+                navigation={navigation}
+                pagination
+                {...swiper}
+              >
+                {list?.map((product: Product | undefined, productIndex: number) => {
+                  const subElId = `${elId}-item-${product?.id || productIndex}`
+
+                  return (
+                    <SwiperSlide
+                      key={subElId}
+                      {...swiperSlide}
+                    >
+                      <ProductsListItem
+                        id={subElId}
+                        onClick={() => product && onSelectOne(product)}
+                        pending={pending && !products}
+                        product={product}
+                        windowXS={windowXS}
+                        {...item}
+                      />
+                    </SwiperSlide>
+                  )
+                })}
+              </Swiper>
             </Box>
+          </>
+        ) : (
+          <Box
+            id={`${elId}-empty`}
+            display="flex"
+            flex="1"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+          >
+            <Title
+              id={`${elId}-empty-title`}
+              variant={['h5', 'h4']}
+            >
+              Nothing found
+              {!categorySlug ? '' : ` for "${categorySlug}"`}
+            </Title>
           </Box>
         )}
-        <Box
-          marginX={[-2, -3]}
-          paddingX={[2, 3]}
-        >
-          <Swiper
-            id={elId}
-            spaceBetween={18}
-            slidesPerView={slidesPerView}
-            modules={[ A11y, Navigation, Pagination ]}
-            enabled={sliderEnabled}
-            navigation={navigation}
-            pagination
-            {...swiper}
-          >
-            {list?.map((product: Product | undefined, productIndex: number) => {
-              const subElId = `${elId}-item-${product?.id || productIndex}`
-
-              return (
-                <SwiperSlide
-                  key={subElId}
-                  {...swiperSlide}
-                >
-                  <ProductsListItem
-                    id={subElId}
-                    onClick={() => product && onSelectOne(product)}
-                    pending={pending && !products}
-                    product={product}
-                    windowXS={windowXS}
-                    {...item}
-                  />
-                </SwiperSlide>
-              )
-            })}
-          </Swiper>
-        </Box>
       </Container>
     </Box>
   )

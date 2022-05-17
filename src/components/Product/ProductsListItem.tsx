@@ -84,7 +84,7 @@ export default function ProductsListItem({
             objectFit      : 'contain',
             minHeight      : windowXS ? 90 : 140,
             transition     : 'all ease-in-out 0.3s',
-            backgroundColor: pending ? theme.palette.grey[100] : 'white',
+            backgroundColor: !productImage ? theme.palette.grey[100] : 'white',
           })}
         />
         <CardContent

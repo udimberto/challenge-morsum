@@ -4,7 +4,8 @@ import InputBase from '@mui/material/InputBase'
 const FormControl = styled(InputBase)(({ theme }) => ({
   color: 'inherit',
   '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 2),
+    width: '100%',
+    padding: theme.spacing(0.5, 2),
     borderRadius: theme.spacing(0.5),
   },
 }))

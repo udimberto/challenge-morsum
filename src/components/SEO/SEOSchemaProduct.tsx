@@ -3,10 +3,14 @@ import { Product } from '../../types'
 import { currencyFormat } from '../../utils'
 
 export type SEOSchemaProductProps = {
+  elId   ?: string
   product?: Product
 }
 
-export function SEOSchemaProduct({ product } : SEOSchemaProductProps) {
+export function SEOSchemaProduct({
+  elId = 'product-details-schema',
+  product,
+} : SEOSchemaProductProps) {
   const {
     id         : productId,
     category   : productCategory,
@@ -23,39 +27,62 @@ export function SEOSchemaProduct({ product } : SEOSchemaProductProps) {
 
   return !productId ? null : (
     <div
+      id={elId}
       itemScope
       itemType="https://schema.org/IndividualProduct"
       itemID={`${productId}`}
     >
-      <div itemProp="name">
-        {productTitle}
-      </div>
-      <div itemProp="description">
-        {productDescription}
-      </div>
-      <div itemProp="category">
-        {productCategory}
-      </div>
-      <div itemProp="price">
-        {currencyFormat(productPrice)}
-      </div>
-      <img
+      <meta
+        id={`${elId}-name`}
+        itemProp="name"
+        content={productTitle}
+      />
+      <meta
+        id={`${elId}-description`}
+        itemProp="description"
+        content={productDescription}
+      />
+      <meta
+        id={`${elId}-category`}
+        itemProp="category"
+        content={productCategory}
+      />
+      <meta
+        id={`${elId}-image`}
         itemProp="image"
-        alt=""
-        src={productImage}
+        content={productImage}
       />
       <div
+        id={`${elId}-rating`}
         itemScope
         itemProp="aggregateRating"
         itemType="https://schema.org/AggregateRating"
       >
-        <div itemProp="ratingValue">
-          {productRatingValue}
-        </div>
-        <div itemProp="reviewCount">
-          {productRatingCount}
-        </div>
+        <meta
+          id={`${elId}-rating-value`}
+          itemProp="ratingValue"
+          content={String(productRatingValue)}
+        />
+        <meta
+          id={`${elId}-rating-count`}
+          itemProp="reviewCount"
+          content={String(productRatingCount)}
+        />
+      </div>
+      <div
+        id={`${elId}-offers`}
+        itemScope
+        itemProp="offers"
+        itemType="https://schema.org/AggregateOffer"
+      >
+        <meta
+          id={`${elId}-offers-low-price`}
+          itemProp="lowPrice"
+          content={currencyFormat(productPrice)}
+        />
       </div>
     </div>
   )
 }
+
+export default SEOSchemaProduct

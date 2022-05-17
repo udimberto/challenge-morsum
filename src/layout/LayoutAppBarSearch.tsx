@@ -1,6 +1,7 @@
 import { useCallback, FormEvent } from 'react'
 import { useRouter } from 'next/router'
 import { alpha } from '@mui/material/styles'
+import { Box } from '@mui/material'
 import FormControl from '../components/Form/FormControl'
 import theme from '../styles/theme'
 
@@ -29,27 +30,32 @@ export default function LayoutAppBarSearch() {
   }, [navigate])
 
   return (
-    <form
+    <Box
+      component="form"
       noValidate
       id={`${elKind}-form`}
       onSubmit={handleSubmit}
+      display="flex"
+      flex="1"
+      flexDirection="column"
     >
       <FormControl
-        placeholder="Search…"
+        placeholder="Search"
         inputProps={{
           'aria-label': elKind,
           id          : elKind,
           type        : elKind,
           name        : elName,
-          sx: {
+          sx          : {
             borderRadius   : theme.shape.borderRadius,
-            backgroundColor: alpha(theme.palette.common.white, 0.15),
+            backgroundColor: alpha(theme.palette.common.white, 0.75),
+            transition     : 'all ease-in-out 0.3s',
             '&:hover'      : {
-              backgroundColor: alpha(theme.palette.common.white, 0.25),
+              backgroundColor: alpha(theme.palette.common.white, 1),
             },
           }
         }}
       />
-    </form>
+    </Box>
   )
 }

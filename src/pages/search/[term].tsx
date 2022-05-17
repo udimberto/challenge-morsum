@@ -2,24 +2,24 @@ import { useRouter } from 'next/router'
 import ProductsList from '../../components/Product/ProductsList'
 import SEO from '../../components/SEO/SEO'
 
-export default function PageProductsCategory() {
+export default function PageSearch() {
   /**
    * Navigation values
    */
-  const { query }        = useRouter()
-  const { categorySlug } = query
+  const { query } = useRouter()
+  const { term }  = query
 
   return (
     <>
       <SEO
-        title={`${categorySlug}`}
+        title={`${term}`}
         description="Products list from category"
       />
       <ProductsList
         filtersAreRequired
-        filters={!categorySlug ? undefined : { categorySlug }}
+        filters={!term ? undefined : { categorySlug: term }}
         title={{
-          children: categorySlug,
+          children  : term,
           fontWeight: 'bold',
         }}
       />

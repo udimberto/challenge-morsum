@@ -16,6 +16,7 @@ import Link from '../components/Link/Link'
 import Legend from '../components/Typography/Legend'
 import Title from '../components/Typography/Title'
 import SEO from '../components/SEO/SEO'
+import SEOSchemaProduct from '../components/SEO/SEOSchemaProduct'
 import { GetServerSideProps, NextPage } from 'next'
 import { serviceProducts } from '../services'
 
@@ -209,13 +210,16 @@ const PageProduct: NextPage<PageProductProps> = ({ productDataFromSS }) => {
           </Box>
         </Container>
       </Box>
+      <SEOSchemaProduct
+        product={productDataFromSS || product}
+      />
     </>
   )
 }
 
 /**
  * This strategy will retrieve product data on the server side,
- * when the request is made from a robot
+ * when the request is made by a robot
  *
  * @returns {Object}
  */
@@ -231,12 +235,13 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query }) => 
   }
 
   const { data: productDataFromSS } = await serviceProducts.details({
-    productId: Number(productId),
+    productId: Number(productId) || 0,
   })
 
   if (!productDataFromSS) {
     return {
-      notFound: true
+      props   : {},
+      notFound: true,
     }
   }
 

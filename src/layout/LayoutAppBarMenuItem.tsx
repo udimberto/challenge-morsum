@@ -74,6 +74,7 @@ export default function LayoutAppBarMenuItem({
           <Link
             id={menuTriggerId}
             href={String(href || '/')}
+            fontSize="small"
             {...link}
           >
             {children}
